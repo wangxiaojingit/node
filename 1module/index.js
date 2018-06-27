@@ -36,11 +36,12 @@ Moduled._extname["js"]=function(module){
   let javascriptStr= fs.readFileSync(module.fileName);
   let str=Moduled.wrap(javascriptStr)
   vm.runInThisContext(str).call(module.exports,module.exports,req,module) ;
+  return module;
 }
 Moduled.prototype.load=function(fileName){
      //需要判断下这个模块的类型.js?.json
      let _extanmestr=path.extname(fileName).slice(1);
-     Moduled._extname[_extanmestr](this)
+     Moduled._extname[_extanmestr](this);
      
 }
 
@@ -59,6 +60,7 @@ function req(fileName){//fileName 有可能没有后缀
    module.load(fileName);
    //把值存入缓存
    Moduled._cache[fileName]=module;
+   console.log(module.exports)
    return module.exports;
 
 }
