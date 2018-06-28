@@ -5,7 +5,11 @@ let event=new eventEmitter();
  * event.emit 触发事件
  * event.once 绑定的事件只能触发一次后失效
  * event.removeListener（）//在事件触发前可以移出
- * eventEmitter.defaultMaxListeners() //
+ * eventEmitter.defaultMaxListeners //eventEmitter 上默认的最大绑定事件个数
+ * event.setMaxListeners(num)//给实例设置最大的监听事件次数
+ * event.getMaxListeners(num)
+ * event.eventNames()//返回的是 一个数组:[ '失恋', '减肥' ],绑定的事件数组.
+ * event.prependListener(eventname,fn),当触发eventname事件的时候,最先执行这个函数.
  */
 function findboy (){
    console.log("findboy")
@@ -18,6 +22,7 @@ event.setMaxListeners(2)//设置实例上最大的监听事件次数为2，如�
 console.log(event.getMaxListeners());
 event.on("失恋",findboy);
 event.on("失恋",findboy);
+event.on("减肥",findboy);
 //event.on("失恋",findboy);
 /**
  * 
@@ -31,3 +36,4 @@ event.prependOnceListener("失恋",function(){
 
 })
 event.emit("失恋");
+console.log(event.eventNames())
