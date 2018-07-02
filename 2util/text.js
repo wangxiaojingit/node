@@ -14,4 +14,5 @@ B.prototype.write=function(){
 //让A 继承B 的原型
 util.inherits(A,B);
 let a=new A();
-a.say()
+a.write()
+
