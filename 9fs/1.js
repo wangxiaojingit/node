@@ -23,14 +23,27 @@ function mkdirp(filename){
 }
 mkdirp("a/b/c")
 
-//异步一次性创建多个目录的时候,
-function mkdirSync(path){
-    let pathAry=filename.split("/");
+/**
+ *  异步一次性创建多个目录的时候
+ *  只要是异步的都不能用for循环,要想到递归
+ * 
+ * 
+ */
+let fs=require("fs");
+function mkdirSync(path,callback){
+    let pathAry=path.split("/");
     function next(index){
+       if(index>pathAry.length) return callback();
        let newPath=  pathAry.slice(0,index).join("/");
        fs.access(newPath,function(err){
              if(err){
-
+               //如果不存在,就去创建目录
+               fs.mkdir(newPath,function(err){
+                   next(index+1)
+               })
+             }else{
+                next(index+1)
+                
              }
        })
 
@@ -38,6 +51,8 @@ function mkdirSync(path){
     next(1)
 }
 
-mkdirSync("f/d/c")
+mkdirSync("f/d/c",function(){
+    console.log("创建完成!")
+})
 
    
