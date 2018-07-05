@@ -20,10 +20,11 @@
 
   */
   let fs=require("fs");
-  function rmdir(path){
-      let ary= fs.readdirSync(path);//返回的是当前文件目录下的第一次文件[ '1.js', 'e' ]
-      for(var i=0;i<ary.length;i++){
-         let newPath=fs.join(path,ary[i]);
+  let path=require("path");
+  function rmdir(dir){
+      let files= fs.readdirSync(dir);//返回的是当前文件目录下的第一次文件[ '1.js', 'e' ]
+      for(var i=0;i<files.length;i++){
+         let newPath=path.join(dir,files[i]);
          let state=fs.statSync(newPath);
          if(state.isDirectory()){
              //如果是文件夹
@@ -33,6 +34,9 @@
              fs.unlinkSync(newPath)
          } 
       }
-      fs.rmdirSync(newPath)
+      fs.rmdirSync(dir)
   }
-  rmdir("b")
+  rmdir("f")
+
+
+  
