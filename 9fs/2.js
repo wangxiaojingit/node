@@ -16,8 +16,6 @@
 
  /**
   * 依次删除一个路径下的所有文件
-
-
   */
   let fs=require("fs");
   function rmdir(path){
@@ -36,3 +34,34 @@
       fs.rmdirSync(newPath)
   }
   rmdir("b")
+
+  /**
+   *异步删除一个文件夹(包含它下面的所有的文件)
+   * 
+   */
+  let fs=require("fs");
+  let path=require("path");
+  function rmdir(dir){
+     return new Promise(function(resolve,reject){
+         fs.stat(dir,function(err,stat){
+              if(stat.isDirectory){
+                    fs.readdir(function(err,files){
+                        files=files.map(item=>path.join(dir,item));
+                        files=files.map(item=>rmdir(item));
+                        Promise.all(files).then(function(){
+                            fs.rmdir(dir,reject);
+                        })
+                    })
+              }else{
+                  fs.unlink(dir,resolve)
+              }
+         
+            })
+        })
+         
+        
+     }
+ 
+  rmdir("b",function(){
+      console.log("删除成功")
+  })
