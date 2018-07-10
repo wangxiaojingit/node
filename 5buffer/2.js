@@ -22,6 +22,7 @@ Buffer.prototype.myCopy=function(tartget,offset,sourceStart,sourceEnd){
 
 }
 //3----Buffer.concat(); 把buffer流拼接成新的数组
+
 let buffer1=Buffer.from("树");
 let buffer2=Buffer.from("林");
 let buffer3=Buffer.concat([buffer1,buffer2],100)
