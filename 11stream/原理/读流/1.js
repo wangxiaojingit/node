@@ -6,8 +6,8 @@ let rs=new readStream(path.join(__dirname,"./1.txt"),{
     encoding:null,
     autoClose:true,
     start:0,
-    end:3,
-    highWaterMark:6
+    end:6,
+    highWaterMark:2
 })
 
 rs.on("open",function(){
@@ -20,7 +20,7 @@ rs.on("error",function(err){
     console.log(err)
 })
 rs.on("data",function(data){
-    console.log(data)
+    console.log(data.toString())
 })
 rs.on("end",function(){
     console.log("end")

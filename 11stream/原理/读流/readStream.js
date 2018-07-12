@@ -15,11 +15,14 @@ class readStream extends EventEmitter {
          this.flowing=null,
          //读文件的时候,需要创建一个buffer
          this.buffer=Buffer.alloc(this.highWaterMark);
+         //
+         this.position=this.start;
          //只要new 了readStram()这个类,我们就应该先打开文件再执行其它操作
          this.open(); //异步
          //什么时候开始读文件?当用户触发on("data")
-         this.on("newListener",function(type){ //同步
+         this.on("newListener",(type)=>{ //同步
                 if(type=="data"){
+                   this.flowing=true;   
                    this.read() 
                 }
          })
@@ -38,7 +41,7 @@ class readStream extends EventEmitter {
       }
       //打开文件
       open(){
-         fs.open(this.path,this.flags,function(err,fd){
+         fs.open(this.path,this.flags,(err,fd)=>{
              if(err){
                 //打开文件的时候,如果出错,
                 this.emit("error",err);
@@ -47,7 +50,7 @@ class readStream extends EventEmitter {
                 }
              }
              this.fd=fd;//把这个fd存放起来,等读文件的时候用
-             this.emit("open")
+             this.emit("open");            
          })
       }
       //读文件
@@ -56,10 +59,47 @@ class readStream extends EventEmitter {
             //我们需要打开之后再触发这个方法
          //console.log("fd:"+this.fd)//undefined
          //等待着文件被打开,打开之后,我们在执行read
-         if(typeof this.fd!=="Number"){
+         if(typeof this.fd!=="number"){
           return  this.once("open",(err)=>{this.read()})
          }
+
+         let howLength;
+         if(this.end){
+            if(this.position+this.highWaterMark-1<this.end){
+                  howLength=this.highWaterMark;
+               }else{
+                  howLength= this.highWaterMark-((this.position+this.highWaterMark-1)-this.end);
+            }
+      
+         }
+         //开始写读的逻辑
+         fs.read(this.fd,this.buffer,0,howLength,this.position,(err,bytesRead)=>{
+              if(bytesRead>0){
+                  //如果读到内容了
+                 this.position=this.position+bytesRead;
+                 //每次读到内容的时候需要把这个内容发出去,保留有用的
+                 let r=this.buffer.slice(0,bytesRead);
+                 r=this.encoding?r.toString(this.encoding):r;
+                 this.emit("data",r);
+                 if(this.flowing){
+                    this.read();
+                 }
+                 //this.read();
+              }else{
+
+                    //如果没内容
+                    this.emit("end");
+                    this.destory();
+              }
+         })
          
+      }
+      pause(){
+            this.flowing=false;
+      }
+      resume(){
+            this.flowing=true;
+            this.read();
       }
 }
 
