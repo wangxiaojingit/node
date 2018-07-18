@@ -60,33 +60,25 @@ class WriteStream extends EventEmitter{
       this.emit('drain');
     }
   }
-
-     destory(){
-       if(typeof this.fd=="number"){
-          fs.close(this.fd,()=>{
-              this.emit("close");
-          });
-          return;
-       }
-       this.emit("close");
-     }
-     open(){
-         fs.open(this.path,this.flags,this.mode,(err,fd)=>{
-             if(err){
-                fs.emit("error");
-                this.destory();//关掉文件
-                return
-             }
-             this.fd=fd;
-             fs.emit("open");//触发打开文件
-         })
-     }
-     write(trunk,encoding=this.encoding,callback){
-         if(typeof this.fd=="number"){
-
-         }
-     }
+  destroy(){
+    if(typeof this.fd === 'number'){
+      fs.close(this.fd,()=>{
+        this.emit('close');
+      });
+      return 
+    }
+    this.emit('close');
+  }
+  open(){
+    fs.open(this.path,this.flags,this.mode,(err,fd)=>{
+      if(err){
+        this.emit('error');
+        this.destroy();
+        return 
+      }
+      this.fd = fd;
+      this.emit('open');
+    });
+  }
 }
-
 module.exports=WriteStream;
-

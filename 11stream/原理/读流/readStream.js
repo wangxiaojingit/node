@@ -86,7 +86,6 @@ class readStream extends EventEmitter {
                  }
                  //this.read();
               }else{
-
                     //如果没内容
                     this.emit("end");
                     this.destory();
