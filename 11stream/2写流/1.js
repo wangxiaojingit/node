@@ -28,7 +28,7 @@ console.log(flag);
  //ws.on("drain") 抽干这个方法,是必须写的内容大于highWaterMark的时候,才会执行.
 
  ws.end("死了") //会清空文件的缓存,并关掉文件
- ws.write("2") //当文件用了end之后,就不能再用ws.write()方法了,报错: write after end
+ //ws.write("2") //当文件用了end之后,就不能再用ws.write()方法了,报错: write after end
 
 
  /**

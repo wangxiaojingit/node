@@ -24,9 +24,11 @@
 //默认不会有什么行为
 
  rs.on("data",function(data){
-    console.log(data)
+    console.log(data.toString());
  })
-
+ rs.on("end",function(){
+     console.log("end")
+ })
 
 
 

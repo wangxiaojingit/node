@@ -43,4 +43,9 @@ class WriteStream extends EventEmitter{
              fs.emit("open");//触发打开文件
          })
      }
+     write(trunk,encoding=this.encoding,callback){
+         if(typeof this.fd=="number"){
+
+         }
+     }
 }
