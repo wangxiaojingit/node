@@ -36,6 +36,7 @@ class Wr extends Emmiter{
                  return;
                }
                this.fd=fd;
+               this.emit("open");
         })
     }
     clearBuffer(callback){
