@@ -7,15 +7,17 @@ let {Readable}=require("stream");
 class MyRead extends Readable{
     constructor(){
         super();
+        this.index=0;
         
     }
     _read(){
-        //console.log("1");
-        for(var i=0;i<3;i++){
-           this.push(i+"");
+        this.index++;
+        this.push(this.index+"");
+        if(this.index==5){
+          this.push(null); //当写上this.push(null)的时候会触发下面的on("end")事件
         }
-        this.push(null); //代表终止,如果不加这个会
-    };
+    }
+   
 }
 
 let myread=new MyRead();
