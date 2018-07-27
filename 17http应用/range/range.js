@@ -50,14 +50,18 @@
  async function listen(req,res){
      //判断返请求的headers 有没有范围限制
      let range=req.headers["range"];
+     console.log(range+"----");
      if(range){
+
         let statObj=  await fs.stat(p);
         let total=statObj.size;
         //如果有范围限制,截取start end
         let [a,start,end]=range.match(/(\d*)-(\d*)/);
+
         start=start?Number(start):0;
         end=end?Number(end):total-1;
-      
+        console.log(start);
+        console.log(end);
         res.statusCode=206;
         res.setHeader("Accept-Ranges","bytes");
         res.setHeader("Content-Range",`bytes ${start}-${end}/${total}`)
@@ -67,7 +71,7 @@
         fs.createReadStream(p,{start,end}).pipe(res);
      }else{
         //没有范围限制
-
+        console.log(2)
         fs.createReadStream(p).pipe(res);
      }
 
