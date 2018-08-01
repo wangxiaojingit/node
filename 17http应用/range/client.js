@@ -44,32 +44,25 @@
     } 
     start=start+NUM+1;
     end=start+NUM;
-   
-    
     console.log(start+"****");
     console.log(end+"****");
     let client=http.request(config,(res)=>{
         //Content-Range: bytes 0-5/14
         let total=res.headers["content-range"].split("/")[1];
-        
         console.log(total+"total:")
         res.on("data",(data)=>{
             ary.push(data);
         })
-     
         res.on("end",()=>{
             let result=Buffer.concat(ary);
             //需要把结果写进去2.txt
             wx.write(result);
-           
             timer=setTimeout(function(){
                 if(start<total){
                     downText();
                 }
-               
             },1000)
         })
-     
       })
      
       client.end()//请求结束
