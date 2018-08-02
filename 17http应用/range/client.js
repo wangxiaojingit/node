@@ -36,7 +36,18 @@
  let wx=fs.createWriteStream(p);
  //客户端发送的请求的时候Range是首字母大写,服务器那端收到的是range是小写,服务端返回给客户端之后是Content-Range
  let timer=null;
-
+ //新增需求，如果在客户端输入p,就暂停下载，输入r 就开启下载
+ let pause=false;
+ //process.stdin.on 监听标准输入
+ process.stdin.on("data",(data)=>{
+     if(data.includes("p")){
+         pause=true;
+     }else if(data.includes("r")){
+         pause=false; 
+         downText();
+     }
+ })
+ let  pause=false;
  function downText(){
     let ary=[];
     config.headers={
@@ -58,7 +69,7 @@
             //需要把结果写进去2.txt
             wx.write(result);
             timer=setTimeout(function(){
-                if(start<total){
+                if(!pause&&start<total){
                     downText();
                 }
             },1000)

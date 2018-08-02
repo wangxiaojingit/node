@@ -8,6 +8,7 @@ let p=path.join(__dirname,"./1.txt");
 
 
 async function listen(req,res){
+    
      let statObj=await fs.stat(p);
      let total=statObj.size;
      let range=req.headers["range"];
