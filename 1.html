@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+ //var ary=[3, -6, 123, -945, -231, 112];
+ var ary=[1,2,3];
+//第一步:求出所有的子序列组合;[[1],[1,2],[1,2,3],[2],[2,3],[3]];
+ var bigary=[];
+ for(var i=0;i<ary.length;i++){
+      let cur=ary[i];//当前项 1
+      bigary.push([cur]);
+      var temp=[cur]; //[1]
+      for(var j=i+1;j<ary.length;j++){
+          let next=ary[j];
+          temp.push(next);
+          let c=temp;
+        
+          bigary.push(c);
+          c=null;
+
+      }
+ }
+console.log(bigary)
+
+
+
+
+// for(var i=0;i<ary.length;i++){
+//     let cur=ary[i];
+//     let temp=[];
+//     temp.push(cur);
+//     allary.push(temp);
+//     for(var j=i+1;j<ary.length;j++){
+//         let tempj=temp;
+
+//         tempj.push(ary[j]);
+//         allary.push(tempj);
+//     }
+// }
+//    console.log(allary)
+</script>
