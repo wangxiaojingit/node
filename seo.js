@@ -37,13 +37,14 @@ for (var i=0;i<allary.length;i++){
    let nums=[3, -6, 123, -945, -231, 112];
    var maxSubArray = function(nums) {
         // 初始化源数组，初始化An为结束的最大值
-        let A = nums;
+        let A = nums; //[3, -6, 123, -945, -231, 112];
         let dp = [];
         let maxSum = A[0];
-        dp[0] = A[0];
+        dp[0] = A[0]; //dp=[3]
         for(let i = 1; i < A.length; i++) {
             //状态转移公式
-            dp[i] = max(A[i], dp[i-1] + A[i])
+            dp[i] = max(A[i], dp[i-1] + A[i]);
+            //dp[1]=3;
             maxSum = dp[i] > maxSum ? dp[i] : maxSum;
         }
         return maxSum;
