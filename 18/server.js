@@ -5,7 +5,7 @@ let url=require("url");
 let path=require("path");
 let public=path.join(__dirname,"./public");
 let whitelist=["zf1.cn","zf2.cn"];
-let fs=require("fs");
+
 /* 
 Host: zf1.cn:3000
 Referer: http://localhost:3000/1.html
