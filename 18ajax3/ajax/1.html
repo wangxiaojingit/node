@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <form onsubmit="login(event)" id="form">
+
+            
+        姓名:<input type="text" name="name">
+        年龄:<input type="text" name="age">
+        <input type="submit">
+    </form>  
+</body>
+</html>
+<script>  
+/***
+ * form 表单元素,上有一个属性$("#form").elements;获取所有的表单元素
+ * console.log(document.querySelector("#form").elements);
+ * 
+ * 
+*/
+    let $=document.querySelector.bind(document);
+    //let $=document.querySelector.bind(document);
+    function serialized(ele){
+       let ary=[];
+       for(var i=0;i<ele.elements.length;i++){
+           let {type,name,value}=ele.elements[i];
+           switch(type){
+               case "text":
+               case "password":
+                  ary.push(`${name}=${value}`);
+                  break;
+               default:
+           }
+          
+         
+       }
+       
+       return ary.join("&");
+
+    }
+    //ajax
+    function ajax(options){
+       let {
+           url,
+           method="get",
+           dataType="json",
+           contentType,
+           data=null,
+           success,
+           error
+       }=options;
+       let xhr=new XMLHttpRequest();
+       if(method=="get"){
+         xhr.open(method,`${url}?${data}`,true);
+       }else{
+         xhr.open(method,url,true);
+         
+         xhr.setRequestHeader("Content-Type",contentType);
+
+       }
+       xhr.responseType=dataType;
+       xhr.onerror=function(){
+           error&&error();
+       }
+       xhr.onsuccess=function(){
+           success&&success();
+       }
+       xhr.onreadystatechange=function(){
+           if(xhr.readyState==4){
+               if(xhr.status>=200&&xhr.status<300||xhr.status==304){
+                  success&&success(xhr.response)
+               }
+           }
+       }
+       data=method=="get"?null:data;
+       xhr.send(data);
+    }
+    
+    function login(e){
+       e.preventDefault();//阻止默认表单的默认提交;
+       //点击提交的时候,我们先要拿到表单的数据
+       let seach=serialized($("#form"));
+       console.log(seach);
+       ajax({
+           url:"/login",
+           method:'post',
+           dataType:'json',
+           contentType:"application/x-www-form-urlencoded",
+           data:seach,
+           success:function(data){
+              console.log(data);
+           }
+           
+       })
+
+    }
+</script>

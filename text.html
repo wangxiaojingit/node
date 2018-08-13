@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+     *{margin:0;padding:0};
+     .box{width:300px;height:300px;background:green;}
+     .child{width:100px;height:100px;background:pink;}
+     .button{width:50px;height:50px;background:yellow;}
+    </style>
+</head>
+<body>
+    <div class="box" style="width:300px;height:300px;background:green;">
+        parent
+        <div class="child">child
+            <div class="button">提交</div>
+        </div>
+    </div>
+</body>
+</html>
+<script>
+    var divs=document.querySelectorAll("div");//获取所有的divs
+    function fn0(){
+        alert("box");
+    }
+    function fn1(){
+        alert("child");
+    }
+    function fn2(){
+        alert("but");
+    }
+    divs[0].addEventListener("click",fn0,true);
+    divs[1].addEventListener("click",fn1,true);
+    divs[2].addEventListener("click",fn2,true);
+
+//浏览器事件机制中触发事件的三个阶段
+
+//     JS中事件执行的整个过程称之为事件流，分为三个阶段：事件捕获、事件目标处理函数、事件冒泡。
+
+// 　　当某个元素触发某个事件（如onclick），顶级对象document发出一个事件流，顺着DOM的树节点向触发它的目标节点流去，直到到达目标元素，这个层层递进、
+//     向下找寻目标点的过程为事件的捕获阶段，此过程中与事件相应的函数是不会被触发的。
+
+// 　　到达目标元素，便会执行绑定在此元素上的、与事件相应的函数，即事件目标处理函数阶段。
+
+// 　　最后，从目标元素起，再依次往顶层对象传递，途中如果有节点绑定了同名事件，这些事件所对应的函数会逐一被触发，此过程便称之为事件冒泡。
+
+// 　　通常情况下，事件相应的函数都是在冒泡阶段触发执行的，addEventListener的第三个参数默认false，表示冒泡时执行（为true时，函数在捕获阶段便会执行）。
+
+// 　　使用e.stopPropagation() 或 e.cancelBubble = true（IE）可以阻断事件向当前元素的父元素冒泡。
+</script>
