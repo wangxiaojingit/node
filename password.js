@@ -8,6 +8,13 @@
 //文档
 //https://zhufengzhufeng.github.io/201802/html/18.http-1.html
 
+//相关知识点
+//http://www.zhufengpeixun.cn/plan/html/16.crypto.html
+
+
+//xcbobo: wangxj@xcbobo.com    wxj123456
+//git :  mima wxjgyj123
+
 
 //算法课
 //https://gitee.com/zhufengpeixun/javascript-alg-practise-1/tree/master/201808/2018%E5%B9%B48%E6%9C%8813%E6%97%A5
