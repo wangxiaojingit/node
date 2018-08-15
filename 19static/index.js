@@ -26,10 +26,11 @@ class Server {
     }
    async handleRequest(req,res){
         //如果请求的地址不存在,就返回not found 如果存在,再判断是不是文件还是文件夹
-        let stats=this.config.dir;
+        let staticdir=this.config.dir;
         let p=url.parse(req.url).pathname;
-        let realPath=path.join(__dirname,stats,p);
-        
+      
+        let realPath=path.join(__dirname,staticdir,p);//真实路径
+        console.log("realPath:"+realPath)
         try{
             let statObj= await stat(realPath);
             //如果文件存在
@@ -47,12 +48,13 @@ class Server {
     sendFile(req,res,statObj,realPath){
         //判断是文件还是文件夹
         console.log("realPath:"+realPath)
-        if(statObj.isFile(realPath)){
+        if(statObj.isFile()){
+            console.log(1)
             //如果是文件的的时候
             res.setHeader('Content-Type', mime.getType(realPath) + ';charset=utf-8');
             fs.createReadStream(realPath).pipe(res);
         }else{
-
+            console.log(2)
         }
     }
     start(){
