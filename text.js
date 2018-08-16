@@ -41,3 +41,44 @@
 
 
 
+// 写一个函数判断一个数字是不是某个整数的平方。
+// is_square (-1) # => false
+// is_square   0 # => true
+// is_square   3 # => false
+// is_square   4 # => true
+// is_square  25 # => true
+// is_square  26 # => false
+// 写好后请在201808/20180816目录 下面建一个 姓名.md 的文件,请注意代码一定要用反引号包裹一下。2018年8月16日
+// 写一个函数判断一个数字是不是某个整数的平方。
+// is_square (-1) # => false
+// is_square   0 # => true
+// is_square   3 # => false
+// is_square   4 # => true
+// is_square  25 # => true
+// is_square  26 # => false
+
+
+function is_square(num){
+
+    if(Number.isNaN(Math.sqrt(num))){
+        return false
+    }else{
+       if(Math.sqrt(num).toString().indexOf(".")>0) {
+           return false
+       }else{
+           return true;
+       }
+    }
+}
+function is_square(num){
+   let val=Math.sqrt(num).toString();
+   return val=="NaN"?false:val.indexOf(".")>0?false:true;
+}
+console.log(is_square(-1) )
+console.log(is_square(0) )  
+console.log(is_square(3) ) 
+console.log(is_square(4))  
+console.log(is_square(25) ) 
+console.log(is_square(26) )
+
+
