@@ -3,10 +3,14 @@ let url=require("url");
 let querystring=require("querystring");
 let formidable=require("formidable");
 let path=require("path");
+let fs=require("fs");
 http.createServer(function(req,res){
     let method=req.method.toLowerCase();//req.method 是大写
    
     let {pathname,query}=url.parse(req.url);
+    if(pathname=="/"){
+       fs.createReadStream(path.join(__dirname,"3.html")).pipe(res);
+    }
     if(pathname=="/form"){
         if(method=="get"){
             let obj=querystring.parse(query);
