@@ -4,6 +4,8 @@
  * 
  */
 
+//1 插件koa-bodyparse
+
  let koa=require("koa");
  let app=new koa();
  let bodyParser = require('koa-bodyparser');
@@ -30,3 +32,5 @@
 
 
  app.listen(3000)
+
+ 

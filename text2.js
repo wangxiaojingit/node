@@ -63,3 +63,96 @@ _.throttle = function(func, wait, options) {
       return result;
     };
   };
+
+
+
+
+maskify("4556364607935616") == "############5616"
+maskify(     "64607935616") ==      "#######5616"
+maskify(               "1") ==                "1"
+maskify(                "") ==                 ""
+
+// "What was the name of your first pet?"
+maskify("Skippy")                                   == "##ippy"
+maskify("Nananananananananananananananana Batman!") 
+
+let str="646079"
+str.splice(-4)
+function maskify(str){
+  return str.length>4?("#").repeat(str.length-4)+str.slice(str.length-4):str
+}
+
+console.log(maskify("4556364607935616"))// == "############5616"
+console.log(maskify(     "64607935616"))// ==      "#######5616"
+console.log(maskify(               "1") )//==                "1"
+console.log(maskify(                "") )//==                 ""
+
+
+
+
+
+
+
+let arr=[1,2,3,8]
+function bsearch(A, x) {
+    let l=0;//定义左边界的索引
+    let r=A.length-1;//定义右边界的索引
+    let q;
+    while(l<=r){
+         q=Math.floor((l+r)/2);//求出平均索引
+         if (A[q]==x) return q;
+         //当平均数小于x的时候
+         if(A[q]<x){//如果中间的数小于x 的时候,下次就应该继续往右找
+            l=q+1;
+            
+         }
+         //当平均数大于x的是时候,就应该向左查找
+         if(A[q]>x){
+            r=q-1;
+           
+         }
+    }
+    return -1;
+} 
+
+
+console.log(bsearch(arr,3))
+
+
+
+
+
+let ary=[3,5,7,13,22,25];
+   function bsearch(arr,x){
+       let l=0;
+       let r=ary.length-1;
+       let guest;
+       if(x>ary[ary.length-1]) return ary.length;
+       else if(x<ary[0]) return 0;
+       else{
+           //如果x的范围在ary中
+           while(l<=r){
+                guest=Math.floor((l+r)/2);
+                if(ary[guest]==x) return guest;
+                
+                if(ary[guest]<x&&ary[guest+1]>x){
+                      return guest+1;
+                }
+                
+                if(ary[guest]>x&&x>ary[guest-1]){
+                      return guest-1;
+                }
+                if(ary[guest]<x){
+                    l=guest+1;
+                    
+                }
+                if(ary[guest]>x){
+                    r=guest-1;
+                }
+          }
+        }
+      
+      }
+       
+  
+  console.log(bsearch(ary,5)) ;

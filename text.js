@@ -82,3 +82,72 @@ console.log(is_square(25) )
 console.log(is_square(26) )
 
 
+
+function squareDigits(num){
+    
+  return num.toString().split("").map(item=>{
+       return Math.pow(item,2)
+   }).join("")
+
+   
+}
+
+console.log(squareDigits(9119) )// 811181
+
+
+
+//二分查找函数
+
+let arr=[1,2,3,8]
+
+             
+function bsearch(A, x) {
+    let l=0;//定义左边界的索引
+    let r=arr.length-1;//定义右边界的索引
+    let q=Math.floor(l+r)/2;//求出平均索引
+
+    while(l<r){
+         if (A[q]==x) return q;
+         //当左边界小于右边界的时候
+         if(A[q]<x){//如果中间的数小于x 的时候,下次就应该继续往右找
+            l=q+1;
+            q=Math.floor(l+r)/2;
+
+         }
+         if(A[q]>x){
+            l=q-1;
+            q=q=Math.floor(l+r)/2;
+         }
+    }
+
+    return -1;
+
+} 
+
+
+console.log(bsearch(arr,3))
+
+
+let ary=[4,5,8];
+   function bsearch(arr,x){
+       let l=0;
+       let r=ary.length-1;
+       let guest;
+       while(l<=r){
+           guest=Math.floor((l+r)/2);
+           if(ary[guest]==x) return guest;
+           if(ary[guest]<x&&ary[guest+1]>x){
+               return guest+1;
+           }
+           if(ary[guest]>x&&x>ary[guest-1]){
+              return guest-1;
+           }
+           if(ary[guest]<x){
+               l=guest+1;
+           }
+           if(ary[guest]>x){
+              r=guest-1;
+           }
+       }
+   }
+  console.log(bsearch(ary,3)) ;
