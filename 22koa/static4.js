@@ -37,7 +37,7 @@ let obj={"name":"wxj","age":16,list:[1,2,3]}
 
 // console.log(str);
 
-function render(){
+function render(renderObj){
     let head = "let templ; \r\n";
     head += "with (renderObj) { \r\n templ =`";
     let content = result.replace(/<%=([\s\S]*?)%>/g,function(){
@@ -49,5 +49,7 @@ function render(){
     let tail = '`} \r\n return templ'
     return head + content + tail;
 }
-let fn = new Function('renderObj',render());
-console.log(fn(obj));
+
+console.log(render(obj))
+// let fn = new Function('renderObj',render());
+// console.log(fn(obj));
