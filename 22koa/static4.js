@@ -19,23 +19,7 @@ let obj={"name":"wxj","age":16,list:[1,2,3]}
 // }
 
 
-// function render(renderobj){
-//     let head=`let templ \r\n `;
-//     head+=`with(renderObj){\r\n`;
-//      let content=result.replace(/<%=([\s\S]*?)%>/g,function(){
-//          return arguments[1];
-//      }) 
-//      content=content.replace(/<%([\s\S]*?)%>/g,function(){
-//          return arguments[1];
-//      })  
-//     let tail='}'
-//     return head+content+tail;
 
-// }
-
-// let str=render(obj);
-
-// console.log(str);
 
 function render(renderObj){
     let head = "let templ; \r\n";
@@ -51,5 +35,9 @@ function render(renderObj){
 }
 
 console.log(render(obj))
-// let fn = new Function('renderObj',render());
-// console.log(fn(obj));
+let fn = new Function('renderObj',render());
+console.log(fn(obj));
+
+
+
+

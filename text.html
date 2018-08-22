@@ -130,13 +130,13 @@
    * 
    * 
    * **/
-    let ary=[3,5,7,13,22,25];
+   let ary=[3,5,7,13,22,25];
    function bsearch(arr,x){
        let l=0;
        let r=ary.length-1;
        let guest;
        if(x>ary[ary.length-1]) return ary.length;
-       else if(x<ary[0]) return 0
+       else if(x<ary[0]) return 0;
        else{
            //如果x的范围在ary中
            while(l<=r){
@@ -157,12 +157,12 @@
            if(ary[guest]>x){
               r=guest-1;
            }
-       }
-       }
+        }
+    }
       
 
        
-   }
+  
   console.log(bsearch(ary,5)) ;
    
 </script>

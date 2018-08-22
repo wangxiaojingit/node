@@ -9,7 +9,7 @@
 // console.log(str)
 
 
-//2----自己封装一个
+//2----自己封装一个,首先需要两点知识 1. with 2 创建一个让字符串运行的函数
 
 
 let fs=require("fs");
@@ -22,13 +22,13 @@ function render(renderObj){
     let templ;
   with(renderObj){
      if(name=="jw"){
-       templ= name
+      templ=  name
      }else{
-        templ= age
+     templ=  age
      }
     
   }
-  return templ
+ return templ
 }
 
 console.log(render(obj))
@@ -42,5 +42,5 @@ console.log(render(obj))
 let obj="wxj2"
 let str=`console.log(obj)`;
 
-let fn=new Function();
-fn(obj,str)
+let fn=new Function('obj',str);
+fn(obj)
