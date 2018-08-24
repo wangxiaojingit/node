@@ -324,5 +324,23 @@ function special(){
 
    
 
+//实现一个数组的倒序
 
+let ary=[1,2,3]
+// let l=Math.ceil(ary.length/2);
+// console.log(1)
+// for(var i=0;i<=l;i++){
+//   ary.splice(i,0,ary[ary.length-1-i]);
+   
+// }
+// console.log(ary)
 
+function revserse(A){
+  for(let i = 0; i < (A.length / 2); i++){
+    const t = A[i]
+    A[i] = A[A.length - i - 1]
+    A[A.length - i - 1] = t
+  }
+}
+revserse(ary);
+console.log(ary)

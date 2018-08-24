@@ -7,6 +7,10 @@ let koa=require("koa");
 let app=new koa();
 let router=require("koa-router");
 
+// let router = new Router({ //  前缀的用法 但是默认不会使用
+//     prefix:'/user'
+// });
+
 let router1=new router();
 let router2=new router();
 
