@@ -58,27 +58,44 @@
 // is_square  26 # => false
 
 
-function is_square(num){
+// function is_square(num){
 
-    if(Number.isNaN(Math.sqrt(num))){
-        return false
-    }else{
-       if(Math.sqrt(num).toString().indexOf(".")>0) {
-           return false
-       }else{
-           return true;
-       }
+//     if(Number.isNaN(Math.sqrt(num))){
+//         return false
+//     }else{
+//        if(Math.sqrt(num).toString().indexOf(".")>0) {
+//            return false
+//        }else{
+//            return true;
+//        }
+//     }
+// }
+// function is_square(num){
+//    let val=Math.sqrt(num).toString();
+//    return val=="NaN"?false:val.indexOf(".")>0?false:true;
+// }
+// console.log(is_square(-1) )
+// console.log(is_square(0) )  
+// console.log(is_square(3) ) 
+// console.log(is_square(4))  
+// console.log(is_square(25) ) 
+// console.log(is_square(26) )
+
+
+//strat=(row-1)*row+1;
+//row 代表了每一行的个数
+
+function rowSumOddNumbers(row){
+    let total= start=(row-1)*row+1;
+    for (var i=0;i<row-1;i++){
+        start+=2;
+        total+=start;
     }
+    return total;
 }
-function is_square(num){
-   let val=Math.sqrt(num).toString();
-   return val=="NaN"?false:val.indexOf(".")>0?false:true;
-}
-console.log(is_square(-1) )
-console.log(is_square(0) )  
-console.log(is_square(3) ) 
-console.log(is_square(4))  
-console.log(is_square(25) ) 
-console.log(is_square(26) )
 
 
+console.log(rowSumOddNumbers(1) )// 1
+console.log(rowSumOddNumbers(2) )// 3+5=8
+ console.log(rowSumOddNumbers(3)) // 7+9+11=27
+ console.log(rowSumOddNumbers(42)) // 74088

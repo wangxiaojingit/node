@@ -1,6 +1,20 @@
 let koa=require("koa");
 let app=new koa();
+ function bodyParse(ctx,next){
+    return new Promise((resolve,reject)=>{
+        let ary=[];
+        ctx.req.on("data",(data)=>{
+            ary.push(data)
+        })
+        ctx.req.on("end",()=>{
+            let result=Buffer.concat(ary).toString();
+            resolve(result);
+        })
+    })
+    
 
+        
+}
 app.use(async(ctx,next)=>{
    if(ctx.path=="/form"&&ctx.method.toLowerCase()=="get"){
        ctx.body=`<form action="/form" method="post" enctype="application/x-www-form-urlencoded">
@@ -14,9 +28,12 @@ app.use(async(ctx,next)=>{
 
 app.use(async(ctx,next)=>{
     if(ctx.path=="/form"&&ctx.method.toLowerCase()=="post"){
-        ctx.body="ok"
+        let result= await bodyParse(ctx,next);
+        console.log(result);
+        ctx.body=result;
+       
     }
-    await next
+    await next();
 })
 
 app.listen(3000)
