@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+//用插叙算法排序
+  let newAry=[];
+  function flat(ary){
+      if(ary instanceof Array){
+        for (var i=0;i<ary.length;i++){
+               flat(ary[i]);
+        }
+      }else{
+        newAry.push(ary[i])
+      }
+      
+  }
+  flat([1,[2,'a',[5,6]],8]);
+  console.log(newAry);
+
+
+
+
+
+
+
+
+</script>

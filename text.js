@@ -151,3 +151,39 @@ let ary=[4,5,8];
        }
    }
   console.log(bsearch(ary,3)) ;
+
+
+  
+
+  
+  function flat(ary){
+    let newAry=[];
+    function _ary(ary){
+          if(ary instanceof Array){
+            for (var i=0;i<ary.length;i++){
+                _ary(ary[i]);
+            }
+            return;
+          }
+          newAry.push(ary)
+    }
+    _ary(ary);
+    return ary;
+  }
+  let ary=[1,[2,'a',[5,6]],8]
+
+  console.log(ary.toString())
+
+  flat(ary);
+
+  let ary=[1,[2,'a',[5,6]],8]
+  let newary=ary.reduce((pre,next)=>{
+     return pre.concat(next)
+  })
+
+  console.log(newary)
+
+  
+
+
+  

@@ -1,10 +1,16 @@
+/**
+ * express 的大致用法 
+ * 
+ * 
+ */
+
 let express=require("express");
 var app=express();
 app.get("/",(req,res)=>{
      res.setHeader("Content-Type","text/html;charset=utf8");
      res.end("欢迎来到index首页")
 })
-app.get("/about",(req,res)=>{
+app.post("/about",(req,res)=>{
     res.setHeader("Content-Type","text/html;charset=utf8");
     console.log("req.host:"+req.host);//不带端口号域名
     console.log("req.path:"+req.path); //访问路径
@@ -30,4 +36,6 @@ app.get("/user",(req,res)=>{
  app.all("*",(req,res)=>{
     res.end("404 not fount")
  })
-app.listen(3000);
+app.listen(3000,function(){
+    console.log(`start server http://localhost:3000`)
+});
