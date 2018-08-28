@@ -6,7 +6,8 @@ app.get("/list",(req,res)=>{
 })
 
 app.post("/user",(req,res)=>{
-    res.end("user-post")
+    res.send({"name":"wxj"});
+    res.end();
 })
 app.get("/user/:id/:name",(req,res)=>{
     res.end(`${req.params.id}-${req.params.name}`)
