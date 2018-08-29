@@ -183,6 +183,27 @@ let ary=[4,5,8];
 
   console.log(newary)
 
+
+//
+
+  function _add(a, b, c, d){
+    return a + b + c + d
+  }
+  
+  const add = curry(add)
+  
+  console.log( add(1) ) // 函数
+  console.log( add(1)(2) ) // 函数
+  console.log( add(1)(2)(3) ) // 函数
+  console.log ( add(1)(2)(3)(4) ) // 10
+
+  function curry(x){
+      return function(y){
+         return x+y
+      }
+  }
+
+ console.log(curry(1)(2))
   
 
 
