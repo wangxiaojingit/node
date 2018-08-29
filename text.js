@@ -95,7 +95,136 @@ function rowSumOddNumbers(row){
 }
 
 
+<<<<<<< HEAD
 console.log(rowSumOddNumbers(1) )// 1
 console.log(rowSumOddNumbers(2) )// 3+5=8
  console.log(rowSumOddNumbers(3)) // 7+9+11=27
  console.log(rowSumOddNumbers(42)) // 74088
+=======
+
+function squareDigits(num){
+    
+  return num.toString().split("").map(item=>{
+       return Math.pow(item,2)
+   }).join("")
+
+   
+}
+
+console.log(squareDigits(9119) )// 811181
+
+
+
+//二分查找函数
+
+let arr=[1,2,3,8]
+
+             
+function bsearch(A, x) {
+    let l=0;//定义左边界的索引
+    let r=arr.length-1;//定义右边界的索引
+    let q=Math.floor(l+r)/2;//求出平均索引
+
+    while(l<r){
+         if (A[q]==x) return q;
+         //当左边界小于右边界的时候
+         if(A[q]<x){//如果中间的数小于x 的时候,下次就应该继续往右找
+            l=q+1;
+            q=Math.floor(l+r)/2;
+
+         }
+         if(A[q]>x){
+            l=q-1;
+            q=q=Math.floor(l+r)/2;
+         }
+    }
+
+    return -1;
+
+} 
+
+
+console.log(bsearch(arr,3))
+
+
+let ary=[4,5,8];
+   function bsearch(arr,x){
+       let l=0;
+       let r=ary.length-1;
+       let guest;
+       while(l<=r){
+           guest=Math.floor((l+r)/2);
+           if(ary[guest]==x) return guest;
+           if(ary[guest]<x&&ary[guest+1]>x){
+               return guest+1;
+           }
+           if(ary[guest]>x&&x>ary[guest-1]){
+              return guest-1;
+           }
+           if(ary[guest]<x){
+               l=guest+1;
+           }
+           if(ary[guest]>x){
+              r=guest-1;
+           }
+       }
+   }
+  console.log(bsearch(ary,3)) ;
+
+
+  
+
+  
+  function flat(ary){
+    let newAry=[];
+    function _ary(ary){
+          if(ary instanceof Array){
+            for (var i=0;i<ary.length;i++){
+                _ary(ary[i]);
+            }
+            return;
+          }
+          newAry.push(ary)
+    }
+    _ary(ary);
+    return ary;
+  }
+  let ary=[1,[2,'a',[5,6]],8]
+
+  console.log(ary.toString())
+
+  flat(ary);
+
+  let ary=[1,[2,'a',[5,6]],8]
+  let newary=ary.reduce((pre,next)=>{
+     return pre.concat(next)
+  })
+
+  console.log(newary)
+
+
+//
+
+  function _add(a, b, c, d){
+    return a + b + c + d
+  }
+  
+  const add = curry(add)
+  
+  console.log( add(1) ) // 函数
+  console.log( add(1)(2) ) // 函数
+  console.log( add(1)(2)(3) ) // 函数
+  console.log ( add(1)(2)(3)(4) ) // 10
+
+  function curry(x){
+      return function(y){
+         return x+y
+      }
+  }
+
+ console.log(curry(1)(2))
+  
+
+
+  
+>>>>>>> 237ad83db743a17812298c48693e42e927b80e76

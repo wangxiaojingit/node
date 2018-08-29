@@ -23,3 +23,50 @@
 // 练习提交的仓库地址 https://gitee.com/zhufengpeixun/javascript-alg-practise-1
 // 用户名 1959583119@qq.com 密码 123456ab
 // 所有的同学共享这一个账号。
+
+
+
+
+
+
+
+
+
+
+// 写一个函数solution，求比一个数字n小的所有3和5的整数倍数和。
+// 比如10，比它小的3、5整数倍数有： 3,5,6,9， 所以和为23。 比如16， 比它小的3，5整数倍数有： 3,5,6,9,10,12,15，所以和为60（15只计算1次）
+// 示例
+// solution(10) // 23
+// solution(16) // 60
+// 注意，如果输入负数，返回0
+
+
+
+
+
+
+
+
+        
+let ary=[1,3,5,2];
+function sepcile(ary){
+    let ary1=ary.filter(item=>item%2==0);
+    let ary2=ary.filter(item=>item%2==1);
+    return ary1.length>1?ary2[0]:ary1[0];
+}
+console.log(sepcile(ary))
+
+
+
+var A=[1,2,3,4,5,6,7];
+
+
+function rotate(ary,n){
+    return ary.splice(-n,n).concat(ary);
+  
+}
+
+console.log(rotate(A, 2));
+
+// rotate(A, 1) // [7,1,2,3,4,5,6]
+// rotate(A, 2) // [6,7,1,2,3,4,5] 

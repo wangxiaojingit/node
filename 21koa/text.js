@@ -11,8 +11,6 @@ let app=new koa();
             resolve(result);
         })
     })
-    
-
         
 }
 app.use(async(ctx,next)=>{
@@ -28,10 +26,7 @@ app.use(async(ctx,next)=>{
 
 app.use(async(ctx,next)=>{
     if(ctx.path=="/form"&&ctx.method.toLowerCase()=="post"){
-        let result= await bodyParse(ctx,next);
-        console.log(result);
-        ctx.body=result;
-       
+        ctx.body=await bodyParse(ctx,next);
     }
     await next();
 })

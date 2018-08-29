@@ -22,32 +22,147 @@
 </body>
 </html>
 <script>
-    var divs=document.querySelectorAll("div");//获取所有的divs
-    function fn0(){
-        alert("box");
+// let arr=[3,5,19,88]
+// function bsearch(A, x) {
+//     let l=0;//定义左边界的索引
+//     let r=A.length-1;//定义右边界的索引
+//     let q;
+//     while(l<=r){
+//          q=Math.floor((l+r)/2);//求出平均索引
+//          if (A[q]==x) return q;
+//          //当平均数小于x的时候
+//          if(A[q]<x){//如果中间的数小于x 的时候,下次就应该继续往右找
+//             l=q+1;
+            
+//          }
+//          //当平均数大于x的是时候,就应该向左查找
+//          if(A[q]>x){
+//             r=q-1;
+           
+//          }
+//     }
+//     return -1;
+// } 
+
+
+// console.log(bsearch(arr,98))
+
+
+
+
+
+</script>
+
+<script>
+    /**
+     * 二分查找: 查找数组arr中的x 元素在数组中的索引,如果有就返回索引,没有就返回-1;
+     * 
+     * 
+     * 
+    */
+   
+
+//    function bSearch(arr,x){
+//         let l=0,
+//         r=arr.length-1,
+//         guess
+//         while(l<=r){
+//             guess=Math.floor((l+r)/2);
+//             if(arr[guess]==x) return guess;
+//             if(arr[guess]<x){
+//                l=guess+1;
+//             }else{
+//                // console.log(arr[guess]);
+//                r=guess-1;
+//             }
+//         }
+//         return -1;
+//    }
+//    let arr=[3,15,18];
+//    let c=bSearch(arr,1);
+//    console.log(c)
+
+</script>
+<script>
+   
+
+
+//    let ary=[3,5,7,13,22,25];
+//    function bsearch(arr,x){
+//        let l=0;
+//        let r=ary.length-1;
+//        let guest;
+//        while(l<=r){
+//            guest=Math.floor((l+r)/2);
+//            if(ary[guest]==x) return guest;
+//            if(guest+1<ary.length-1){
+//                 if(ary[guest]<x&&ary[guest+1]>x){
+//                 return guest+1;
+//                 }
+//            }
+//            if(guest-1>=0){
+//                 if(ary[guest]>x&&x>ary[guest-1]){
+//                 return guest-1;
+//                 }
+//            }
+//            if(ary[guest]<x){
+//                l=guest+1;
+//                if(l>ary.length-1){
+//                   return l
+//                }
+//            }
+//            if(ary[guest]>x){
+//               r=guest-1;
+//               if(r<0){
+//                   return 0; 
+//               }
+//            }
+//        }
+//    }
+//   console.log(bsearch(ary,30)) ;
+   
+</script>
+
+<script>
+  //找12
+  /**
+   * l=0;r=5 guest=2   ary[2]<12  guest+1
+   * 
+   * 
+   * **/
+   let ary=[3,5,7,13,22,25];
+   function bsearch(arr,x){
+       let l=0;
+       let r=ary.length-1;
+       let guest;
+       if(x>ary[ary.length-1]) return ary.length;
+       else if(x<ary[0]) return 0;
+       else{
+           //如果x的范围在ary中
+           while(l<=r){
+           guest=Math.floor((l+r)/2);
+           if(ary[guest]==x) return guest;
+           
+           if(ary[guest]<x&&ary[guest+1]>x){
+                return guest+1;
+           }
+          
+           if(ary[guest]>x&&x>ary[guest-1]){
+                return guest-1;
+           }
+           if(ary[guest]<x){
+               l=guest+1;
+              
+           }
+           if(ary[guest]>x){
+              r=guest-1;
+           }
+        }
     }
-    function fn1(){
-        alert("child");
-    }
-    function fn2(){
-        alert("but");
-    }
-    divs[0].addEventListener("click",fn0,true);
-    divs[1].addEventListener("click",fn1,true);
-    divs[2].addEventListener("click",fn2,true);
+      
 
-//浏览器事件机制中触发事件的三个阶段
-
-//     JS中事件执行的整个过程称之为事件流，分为三个阶段：事件捕获、事件目标处理函数、事件冒泡。
-
-// 　　当某个元素触发某个事件（如onclick），顶级对象document发出一个事件流，顺着DOM的树节点向触发它的目标节点流去，直到到达目标元素，这个层层递进、
-//     向下找寻目标点的过程为事件的捕获阶段，此过程中与事件相应的函数是不会被触发的。
-
-// 　　到达目标元素，便会执行绑定在此元素上的、与事件相应的函数，即事件目标处理函数阶段。
-
-// 　　最后，从目标元素起，再依次往顶层对象传递，途中如果有节点绑定了同名事件，这些事件所对应的函数会逐一被触发，此过程便称之为事件冒泡。
-
-// 　　通常情况下，事件相应的函数都是在冒泡阶段触发执行的，addEventListener的第三个参数默认false，表示冒泡时执行（为true时，函数在捕获阶段便会执行）。
-
-// 　　使用e.stopPropagation() 或 e.cancelBubble = true（IE）可以阻断事件向当前元素的父元素冒泡。
+       
+  
+  console.log(bsearch(ary,5)) ;
+   
 </script>
