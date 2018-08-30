@@ -49,37 +49,50 @@ function Express () {
          fs.createReadStream(filePath).pipe(res);
      }
      let index=0;
-     function next(){
+     function next(err){
         let layer=routes[index++];
         if(layer){
-            if(layer.method=="middle"&&(req.path.startsWith(layer.routePath)||layer.routePath=="/")){
-                 //如果是中间件的时候
-                  layer.handle(req,res,next);
-            }
-            //如果路由存在
-            if(layer.reg){
-                let result= req.path.match(layer.reg);
-                if(result){
-                    //如果匹配上了
-                     let obj=layer.params.reduce((pre,next,index)=>{
-                         pre[next]=result[index+1];
-                         return pre;
-                     },{})
-                     req.params=obj;
-                     if((layer.method==req.method.toLowerCase()||layer.method=="all")&&result){
-                              return   layer.handle(req,res)
-                     }
-                }else{
-                    next()//继续走下一个区匹配
-                }
+            if(err){
+              //如果next 里面有不为null 的参数,
+              if(layer.method=="middle"&&(req.path.startsWith(layer.routePath)||layer.routePath=="/")&&layer.handle.length
+            ==4){
+                   layer.handle(err,req,res,next);
+              }else{
+                   //如果没有匹配到错误路由,我们就继续
+                   next(err)
+              }
             }else{
-              //正常路由
-                 if((layer.method==req.method.toLowerCase()||layer.method=="all")&&(layer.routePath==req.path||layer.routePath=="*")){
-                     return layer.handle(req,res);
-                 }else{
-                     next();//继续走下一个路由
-                 }
-             }
+               //如果next函数里面没有参数
+               if(layer.method=="middle"&&(req.path.startsWith(layer.routePath)||layer.routePath=="/")){
+                //如果是中间件的时候
+                 layer.handle(req,res,next);
+                }
+                //如果路由存在
+                if(layer.reg){
+                    let result= req.path.match(layer.reg);
+                    if(result){
+                        //如果匹配上了
+                            let obj=layer.params.reduce((pre,next,index)=>{
+                                pre[next]=result[index+1];
+                                return pre;
+                            },{})
+                            req.params=obj;
+                            if((layer.method==req.method.toLowerCase()||layer.method=="all")&&result){
+                                    return   layer.handle(req,res)
+                            }
+                    }else{
+                        next()//继续走下一个区匹配
+                    }
+                }else{
+                    //正常路由
+                        if((layer.method==req.method.toLowerCase()||layer.method=="all")&&(layer.routePath==req.path||layer.routePath=="*")){
+                            return layer.handle(req,res);
+                        }else{
+                            next();//继续走下一个路由
+                        }
+                }
+
+            } 
      
         }else{
             //路由不存在,就是走完了,都没匹配上
