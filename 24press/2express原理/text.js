@@ -1,5 +1,3 @@
-function fn(name,age){
-
+function fn(){
+    alert(1)
 }
-
-console.dir(fn)
