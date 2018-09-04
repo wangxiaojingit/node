@@ -4,14 +4,20 @@
 
 
  var express=require("express");
- var bodyParse=require("body-parser");
+ var bodyParse=require("./body-parser");
 
 
  var app=express();
 
+ 
+
+ app.use(bodyParse.urlencoded({extended:true}));
+ app.use(bodyParse.json());
  app.post("/name",(req,res,next)=>{
     let result= req.body;
-    res.end(result);
+    console.log(result);
+    res.send(result);
+    res.end();
  })
 
  app.listen(3000)

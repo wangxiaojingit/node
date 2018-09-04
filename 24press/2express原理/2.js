@@ -37,9 +37,6 @@ app.get("/age",(req,res)=>{
     res.end("中间件二");
 })
 
-
-
-
 app.listen(3000,function(){
     console.log("start server http://localhost:3000")
 })
