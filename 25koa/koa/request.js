@@ -8,7 +8,11 @@ let request={
    },
    get path(){
      let {pathname,query} = url.parse(this.req.url,true) ;
-     return pathname 
-   }
+     return pathname;
+   },
+   get query(){
+    let {pathname,query} = url.parse(this.req.url,true) ;
+    return query;
+  }
 };
 module.exports=request;

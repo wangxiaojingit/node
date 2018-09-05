@@ -23,5 +23,6 @@ app.use((ctx,next)=>{
       console.log(ctx.req.path);//这个是原生的方法                 //"undefined" 
       console.log(ctx.request.path);//request 是自己封装的方法,    // /name2
       console.log(ctx.path); //是ctx.request.url的简写            // /name2 
+      ctx.body="end"
 })
 app.listen(3000)

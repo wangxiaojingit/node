@@ -22,9 +22,12 @@ class application extends EventEmmiter {
 
        ctx.request=request;//自己封装
        ctx.response=response;//自己封装
-       ctx.request.req=ctx.req=req;
-       ctx.response.res=ctx.res=res;
+
+       ctx.req=ctx.request.req=req;
+       ctx.res=ctx.response.res=res;
        return ctx;
+
+       
     }
     //server 回调
     handdleRes(req,res){
