@@ -11,7 +11,7 @@
  import ReactDom from "react-dom";
 
  class Clock extends React.Component{
-     constructor(props){
+     constructor(){
          super();
          this.state={date:new Date().toLocaleString()}
      }

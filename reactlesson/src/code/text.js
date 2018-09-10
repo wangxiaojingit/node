@@ -48,6 +48,9 @@ import ReactDom from "react-dom"
          <Clock time='123'></Clock>
    )
 
-ReactDom.render(str,window.root)
+ReactDom.render(str,window.root);
+
+
+
 
 
