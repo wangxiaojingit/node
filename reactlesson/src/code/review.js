@@ -66,7 +66,52 @@ import ReactDom from 'react-dom'
 //    ReactDom.render(<Clock time='123'></Clock>,window.root)
   
 
+//默认属性和校验
 
+import PropTypes from "prop-types";
+class Person extends React.Component{
+    constructor(props){
+        super();
+        console.log(props.name)
+    }
+    static defaultProps={
+        school:'it school'
+    }
+    static propTypes={
+        name:PropTypes.string,
+        age:PropTypes.number,
+        engen:PropTypes.oneOf(["男","女"]),
+        hobby:PropTypes.arrayOf(PropTypes.string),
+        pos:PropTypes.shape({
+            x:PropTypes.number,
+            y:PropTypes.number
+        })
+    }
+    componentDidMount(){
+
+    }
+    render(){
+          
+          return (<React.Fragment>
+              {this.props.name}--{this.props.age}
+          </React.Fragment>)
+    }
+}
+
+let obj={
+    name:'wxj',
+    age:18,
+    hobby:["羽毛球","跑步","音乐"],
+    engen:"女",
+    pos:{
+        x:22,
+        y:11
+    }
+}
+
+ReactDom.render(<Person {...obj}></Person>,window.root);
+
+  
 
 
 

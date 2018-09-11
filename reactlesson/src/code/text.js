@@ -26,29 +26,65 @@ import ReactDom from "react-dom"
     // },1000)
 //3---
 
-    class Clock extends React.Component{
-        constructor(props){
-            super();
-            this.state={date:new Date().toLocaleString()};
-        }
-        componentDidMount(){
-            //组件挂载之后
-            setInterval(()=>{
-                this.setState({date:new Date().toLocaleString()})
-            },1000)
-        }
-        render(){ //render 的时候,只return了纯js,return this.state.date,发现就报错,加上标签然后再写就没问题,推测可能render的时候要加标签
-           return (<React.Fragment>
-              {this.state.date}+"---"+{this.props.time}
-            </React.Fragment>);
-        }
+//     class Clock extends React.Component{
+//         constructor(props){
+//             super();
+//             this.state={date:new Date().toLocaleString()};
+//         }
+//         componentDidMount(){
+//             //组件挂载之后
+//             setInterval(()=>{
+//                 this.setState({date:new Date().toLocaleString()})
+//             },1000)
+//         }
+//         render(){ //render 的时候,只return了纯js,return this.state.date,发现就报错,加上标签然后再写就没问题,推测可能render的时候要加标签
+//            return (<React.Fragment>
+//               {this.state.date}+"---"+{this.props.time}
+//             </React.Fragment>);
+//         }
+//     }
+
+//     let str=(
+//          <Clock time='123'></Clock>
+//    )
+
+// ReactDom.render(str,window.root);
+
+//4-----------------
+
+class App extends React.Component{
+    constructor(){
+        super();
+        this.state={num:1};
     }
+    componentDidMount(){
+        
+    }
+    fn=()=>{
+       this.timer= setInterval(()=>{
+            this.setState((preState)=>{
+                return {num:preState.num+2}
+            })
+        },1000)
+        
+    }
+    componentWillUnmount(){
+        clearInterval(this.timer)
+    }
+    remove=()=>{
+        ReactDom.unmountComponentAtNode(window.root)
+    }
+    render(){
+       return <div>
+           {this.state.num}
+           <button onClick={this.fn}>+</button>
+           <button onClick={this.remove}>移除</button>
+       </div>
+    }
+}
 
-    let str=(
-         <Clock time='123'></Clock>
-   )
+ReactDom.render(<App></App>,window.root)
 
-ReactDom.render(str,window.root);
 
 
 

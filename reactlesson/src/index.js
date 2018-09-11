@@ -1,4 +1,4 @@
-import "./code/review.js";// 在页面中引用别的js
+import "./code/7.js";// 在页面中引用别的js
 
 //下载react脚手架  
 /**

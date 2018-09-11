@@ -36,6 +36,24 @@ import ReactDom from "react-dom";
    </div>)
    ReactDom.render(str4,window.root)
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
+
    
    
    
