@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>开关过渡</title>
+    <style>
+        *{margin:0;padding:0;}
+        .switch{
+            width:100px;
+            height:32px;
+            border:1px solid green;
+            border-radius:15px;
+            position:relative;
+            -webkit-appearance: none;
+            outline: none;
+            position:relative;
+            box-shadow:0 0 15px 15px gray inset;
+            transition: all 0.2s linear;
+            }
+        .switch:checked{
+            box-shadow:0 0 16px 16px green inset;
+            transition: all 0.2s linear;
+        }
+        .switch::before{
+            content:"";
+            width:30px;height:30px;background:gold;border-radius:50%;
+            position:absolute;left:0px;top:0px;transition:all 0.2s linear;box-shadow: 2px 2px 2px 0px grey;
+        }
+        .switch:checked::before{
+            left:70px;top:0;transition:all 0.2s linear;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+         <input type="checkbox" class="switch"/>
+         <p>关</p>
+    </div>
+</body>
+</html>

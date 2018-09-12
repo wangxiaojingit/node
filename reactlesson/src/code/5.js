@@ -7,8 +7,6 @@ import PropTypes from "prop-types"
  * 
  * 
  */
-
-
  class Person extends React.Component{
      constructor(props){
          super();
