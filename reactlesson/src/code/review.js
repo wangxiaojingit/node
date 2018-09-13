@@ -68,50 +68,90 @@ import ReactDom from 'react-dom'
 
 //默认属性和校验
 
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
+// class Person extends React.Component{
+//     constructor(props){
+//         super();
+//         console.log(props.name)
+//     }
+//     static defaultProps={
+//         school:'it school'
+//     }
+//     static propTypes={
+//         name:PropTypes.string,
+//         age:PropTypes.number,
+//         engen:PropTypes.oneOf(["男","女"]),
+//         hobby:PropTypes.arrayOf(PropTypes.string),
+//         pos:PropTypes.shape({
+//             x:PropTypes.number,
+//             y:PropTypes.number
+//         })
+//     }
+//     componentDidMount(){
+
+//     }
+//     render(){
+          
+//           return (<React.Fragment>
+//               {this.props.name}--{this.props.age}
+//           </React.Fragment>)
+//     }
+// }
+
+// let obj={
+//     name:'wxj',
+//     age:18,
+//     hobby:["羽毛球","跑步","音乐"],
+//     engen:"女",
+//     pos:{
+//         x:22,
+//         y:11
+//     }
+// }
+
+// ReactDom.render(<Person {...obj}></Person>,window.root);
+
+
+
+//-----校验
+import PropTypes from "prop-types"
 class Person extends React.Component{
     constructor(props){
         super();
-        console.log(props.name)
-    }
-    static defaultProps={
-        school:'it school'
     }
     static propTypes={
         name:PropTypes.string,
         age:PropTypes.number,
-        engen:PropTypes.oneOf(["男","女"]),
         hobby:PropTypes.arrayOf(PropTypes.string),
-        pos:PropTypes.shape({
-            x:PropTypes.number,
-            y:PropTypes.number
-        })
+        gender:PropTypes.oneOf(["男","女"]),
+        salay(obj,key){
+            //写成函数的时候,就是自己校验
+            if(obj[key]>=30000){
+               throw new Error("你的工资真高!")
+            }
+           
+        }
     }
-    componentDidMount(){
+    static defaultProps={
+        school:'mp'
+    }
 
-    }
     render(){
-          
-          return (<React.Fragment>
-              {this.props.name}--{this.props.age}
-          </React.Fragment>)
+        return <div>{this.props.name}---{this.props.school}</div>
     }
 }
 
 let obj={
-    name:'wxj',
+    name:"zf",
     age:18,
     hobby:["羽毛球","跑步","音乐"],
-    engen:"女",
-    pos:{
-        x:22,
-        y:11
-    }
+    salay:30000,
+    gender:"男",
+    
 }
 
-ReactDom.render(<Person {...obj}></Person>,window.root);
 
-  
+ReactDom.render(<Person {...obj}></Person>,window.root)
 
 
 
