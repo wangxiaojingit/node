@@ -9,7 +9,7 @@ export default class List extends Component{
             
         <div>
             {this.props.users.map((item,key)=>{
-             return <Itemlist {...item} key={key}  removeuser={this.props.removeuser} increace={this.props.increace}></Itemlist>
+             return <Itemlist {...item} key={key}  removeuser={this.props.removeuser} ></Itemlist>
            })}
         </div>
         )
