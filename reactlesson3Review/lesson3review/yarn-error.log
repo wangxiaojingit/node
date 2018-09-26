@@ -1,0 +1,30 @@
+Arguments: 
+  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js add --exact react react-dom react-scripts --cwd E:\mynodeclass\node\reactlesson3Review\lesson3review
+
+PATH: 
+  C:\Users\prsoft\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\local\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\Intel\iCLS Client;C:\Program Files\Intel\iCLS Client;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;E:\dev\java\jdk1.8\bin;E:\dev\java\jdk1.8\jre\bin;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn;C:\Program Files\Microsoft SQL Server\100\Tools\Binn;C:\Program Files\Microsoft SQL Server\100\DTS\Binn;E:\dev\java\jdk1.8\bin;E:\soft\eclipse_for_andriod\android-sdk_r24.3.4-windows\android-sdk-windows\tools;E:\Program Files\TortoiseSVN\bin;C:\Program Files\nodejs;C:\Program Files (x86)\Yarn\bin;C:\Program Files\Git\cmd;C:\Program Files (x86)\Microsoft VS Code\bin;C:\Program Files\Microsoft VS Code Insiders\bin;E:\curl\I386;C:\Windows\System32\WindowsPowerShell;E:\curl\I386;C:\Program Files\PuTTY;E:\node;C:\Program Files\nodejs;C:\OpenSSL-Win32\bin;C:\Program Files (x86)\Microsoft VS Code\bin;C:\Users\prsoft\AppData\Local\Yarn\bin;C:\Users\prsoft\AppData\Local\GitHubDesktop\bin;C:\Users\prsoft\AppData\Roaming\npm;C:\Program Files\Git\usr\bin\vendor_perl;C:\Program Files\Git\usr\bin\core_perl
+
+Yarn version: 
+  1.3.2
+
+Node version: 
+  8.7.0
+
+Platform: 
+  win32 x64
+
+npm manifest: 
+  {
+    "name": "lesson3review",
+    "version": "0.1.0",
+    "private": true
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
+
+Trace: 
+  Error: ENOENT: no such file or directory, copyfile 'C:\Users\prsoft\AppData\Local\Yarn\cache\v1\npm-depd-1.1.1-5783b4e1c459f06fa5ca27f991f3d06e7a310359\lib\browser\index.js' -> 'E:\mynodeclass\node\reactlesson3Review\lesson3review\node_modules\raw-body\node_modules\depd\lib\browser\index.js'

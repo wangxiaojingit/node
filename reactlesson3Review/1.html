@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <style>
+        html,body{width:100%;height:100%;}
+        body{position:relative;}
+     .bod{transform: translate(-50%,-50%)}
+     #Realnamebox{width:100%;height:100%;background:rgba(0,0,0,.6);position:absolute;left:0;top:0}
+     #RealnameboxIn{width:500px;height:500px;
+     position:absolute;left:50%;top:50%;margin-left:-250px;margin-top:-250px;box-shadow: 1px 1px 0px 5px rgba(70,140,230,.3);background:#fff;
+      border-radius:10px;
+      padding:20px;
+     }
+     .red{color:red;}
+     a{text-decoration: none;color:#eee}
+
+    </style>
+</head>
+<body>
+    <div id="Realnamebox">
+        <div id="RealnameboxIn">
+        <h3 style="color:#5bc0de">实名认证</h3>
+        <p>注:小草播播郑重承诺，您填写的信息只限于凤凰山庄为您提供各种服务，绝不会发放任何广告信息，也绝不会泄露任何您的个人信息。</p>
+        
+        <div class="RealForm">
+                <form onsubmit="submitFun(e,this);" action="/">
+                 <div>
+                  <span class="red">*</span><label for="name">真实姓名:</label><input class="form-control" type="text" value=""id="name" name="name" required>
+                 </div>
+                 <div>
+                   <span class="red">*</span><label for="idcard">身份证号:</label><input class="form-control" type="password" value="" name="idCard"id="idcard" required>
+                 </div>
+                 <div>
+                   <span class="red">*</span><label for="number">联系方式:</label><input class="form-control" type="number" name="phone" type="phone" required>
+                 </div>
+                 <div style="margin:10px 0 ">
+                   <input type="text" class="form-control"  name="mark" required style="width:50%;display:inline-block"/><img id="code" width="100px" src="" />
+                 </div>
+                 <div>
+                        <input class="btn btn-info" type="submit" placeholder="">
+                        <button class="closeForm btn btn-info">关闭</button>
+                 </div>
+               </form>   
+    
+        </div>
+        </div>
+    </div>
+</body>
+</html>
+<script src="jquery-1.7.2.min.js"></script>
+<script>
+    function submitFun(e,obj){
+        e.preventDefault();
+        debugger;
+      alert(obj.name.value);
+      let pre=window.location.origin
+      
+}
+$("#code").attr("src","http://img")
+
+// .realybtn,.norealybtn
+//  var reg=/^(13[0-9]|14[579]|15[0-3,5-9]|16[6]|17[0135678]|18[0-9]|19[89])\d{8}$/;
+//         $("#phone").blur(function(){
+</script>
+

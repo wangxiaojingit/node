@@ -16,11 +16,11 @@ class App extends Component {
     return (
      <Router>
        <div>
-         <Index>
+         <Index >
            <Switch>
               <Route path="/home" component={Home} />
               <Route path="/user" component={User} />
-              <Route path="/center" component={CenterWrapper}></Route>
+              <CenterWrapper path="/center" component={Center}></CenterWrapper>
               <Route path="/admin" component={Admin}></Route>
               {/* 当上面的路由都不匹配的时候就会走这个重定向,跑到home组件 */}
               <Redirect to="/home" ></Redirect> 

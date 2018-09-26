@@ -6,6 +6,7 @@ import Adduser from "./adduser.js";
 import Detail from "./detail.js";
 //用户列表
 export default class user extends Component{
+     
      render(){
          return (
              <div>
