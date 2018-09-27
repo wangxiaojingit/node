@@ -1,65 +1,73 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
 
-// 为了保护state 不被别人乱修改,我们把它存放到一个函数.
 
-function createstore(reducer){
+
+
+function createState(reduce){
     debugger;
-    let state
+    let state,listen=[];
+    //获取状态
+    let getState=()=>JSON.parse(JSON.stringify(state));
+    //更改状态
     function dispatch(action){
-       state= reducer(state, action);
-       //render();
+       state= reduce(state,action);
+      
     }
-
-
-    dispatch({type:"@init"});
+    //更新函数
+    function subscribe(fn){
+      listen.push(fn);
+    }
+    dispatch({type:"@initType"})
     return {
-        getstate:()=>{ return JSON.parse(JSON.stringify(state))}, //这里必须写成函数,每次取值的时候,执行函数,重新去拿state的值.
+        getState,
         dispatch
     }
 }
-
-let store=createstore(reducer);
-
 //初始化状态值
 let initstate={
-    title:{"color":"green","text":"title"},
-    content:{"color":"yellow","text":"content"}
+    title:{"color":"red","content":"title"},
+    content:{"color":"red","content":"content"}
 }
-//管理员
-function reducer(state=initstate,action){
-    console.log(initstate);
+
+function reduce(state=initstate,action){
     switch(action.type){
         case "CHANGE_TITLE_COLOR":
-          return {...state,title:{...state.title,"color":action.color}};
+          return {...state,title:{...state.title,"color":action.COLOR}};
+         
         break;
         case "CHANGE_CONTENT_COLOR":
-         return {...state,content:{...state.content,"color":action.color}};
+          return {...state,content:{...state.content,"color":action.COLOR}};
         break;
     }
     return state;
 }
 
+let store=createState(reduce);
+
 function renderTitle(){
-    let title=document.getElementById("title");
-    title.innerHTML=store.getstate().title.text;
-    title.style.color=store.getstate().title.color;
+    let title= document.getElementById("title");
+    title.style.color=store.getState().title.color;
+    title.innerHTML=store.getState().title.content;
 }
 function renderContent(){
     let content=document.getElementById("content");
-    content.innerHTML=store.getstate().content.text;
-    content.style.color=store.getstate().content.color;
-}
+    content.style.color=store.getState().content.color;
+    content.innerHTML=store.getState().content.content;
+ }
+
+
 function render(){
    renderTitle();
    renderContent();
 }
-
 render();
+//更新函数
+
 
 window.setTimeout(function(){
-    store.dispatch({"type":"CHANGE_TITLE_COLOR","color":"red"});
-    store.dispatch({"type":"CHANGE_CONTENT_COLOR","color":"blue"})
+    store.dispatch({type:"CHANGE_TITLE_COLOR","COLOR":"green"});
+    render();
+},1000)
+window.setTimeout(function(){
+    store.dispatch({type:"CHANGE_CONTENT_COLOR","COLOR":"blue"});
+    render();
 },1000)
