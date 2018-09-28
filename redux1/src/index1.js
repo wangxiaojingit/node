@@ -1,44 +1,35 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-
-// ReactDOM.render(<App />, document.getElementById('root'));
-
-let state={
-    title:{"color":"green","text":"title"},
-    content:{"color":"yellow","text":"content"}
+import {createStore} from"redux";
+//先把num的初始值渲染到页面上
+let initState={
+    num:0
 }
 
-function renderTitle(){
-    let title=document.getElementById("title");
-    title.innerHTML=state.title.text;
-    title.style.color=state.title.color;
-}
-function renderContent(){
-    let content=document.getElementById("content");
-    content.innerHTML=state.content.text;
-    content.style.color=state.content.color;
-}
-function render(){
-   renderTitle();
-   renderContent();
+function reduce(state=initState,action){
+   switch(action.type){
+         case "Add":
+           return {...state,num:state.num+action.value};
+         break;
+         case "MINUS":
+           return {...state,num:state.num-action.value};
+         break;  
+   }
+   window.state=state;
+   return state;
 }
 
-render();
-function dispatch(action){
-    switch(action.type){
-       case "CHANGE_TITLE_COLOR":
-         state={...state,title:{...state.title,"color":action.color}};
-         render();
-       break;
-       case "CHANGE_CONTENT_COLOR":
-         state={...state,content:{...state.content,"color":action.color}};
-         render();
-       break
-    }
+
+let store=createStore(reduce);
+document.getElementById("box").innerHTML=store.getState().num;
+//store.subscribe 多用来订阅事件
+store.subscribe(()=>{
+    document.getElementById("box").innerHTML=store.getState().num;
+})
+window.btn1.onclick=function(){
+    //store.dispatch 多用来派发改变状态
+   store.dispatch({type:"Add",value:1})
 }
-window.setTimeout(function(){
-    dispatch({"type":"CHANGE_TITLE_COLOR","color":"red"});
-    dispatch({"type":"CHANGE_CONTENT_COLOR","color":"blue"})
-},1000)
+
+window.btn2.onclick=function(){
+    store.dispatch({type:"MINUS",value:1})
+}
+
